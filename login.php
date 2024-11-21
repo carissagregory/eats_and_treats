@@ -106,7 +106,7 @@
             <img src="images/eatsAndTreatsLogo.png" alt="eats and treats logo">
             <nav>
                 <ul>
-                    <button class="loginButton"><a href="php/logout.php">Log Out</a></button>
+                    <button class="logoutButton"><a href="index.html">Log Out</a></button>
                 </ul>
             </nav>
         </div><!--navigationBar-->  
@@ -129,7 +129,7 @@
         <footer>
             <div class="footerNav">
                 <ul>
-                    <button class="loginButton"><a href="index.html" onclick="logOut()">Log Out</a></button>
+                    <button class="logoutButton"><a href="index.html" onclick="logOut()">Log Out</a></button>
                 </ul>    
             </div><!--footerNav-->    
                 <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
