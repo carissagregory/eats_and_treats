@@ -1,0 +1,307 @@
+//styling for Eats and Treats files
+
+//defining colors
+$primaryColor: #A3B18A;
+$secondaryColor: #344E41;
+$tertiaryColor: #dad7cd;
+$primaryAccentColor: #588157;
+$secondaryAccentColor: #3A5A40;
+
+//defining fonts
+$headingFont: "Mate SC", serif;;
+$bodyFont: "Quicksand", sans-serif;
+
+//defining mixins
+@mixin container {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+@mixin navStyles {
+    ul {
+        padding: 10px;
+    }
+    ul li {
+        display: inline;
+        padding: 10px;
+    }
+    ul li a {
+        color: #ffffff;
+        font-family: $headingFont;
+    } 
+    ul li a:link {
+        text-decoration: none;
+    }
+    ul li a:hover {
+        color: $tertiaryColor;
+    } 
+}
+
+@mixin buttonStyles {
+    background-color: $primaryAccentColor;
+    border-radius: 20px;
+    font-size: large;
+    border: none;
+    padding: 10px;
+    margin: 0 auto;
+    a, p {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+@mixin buttonHoverStyles {
+    background-color: $tertiaryColor;
+    a:hover, p:hover {
+        color: black;
+    }
+}
+
+@mixin figureStyle {
+    figure {
+        margin-bottom: 15px;
+        padding: 5px;
+        background-color: $primaryColor;
+        text-align: center;
+        width: 50%;
+        height: 70%;
+        img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+        }
+        h2 {
+            padding: 25px;
+        }
+        figcaption {
+            padding: 5px;
+            button {
+                @include buttonStyles;
+            }
+            button:hover {
+                @include buttonHoverStyles;
+            }
+        }
+    } 
+}
+
+@mixin formStyles {
+    width: 50%;
+    margin: auto;
+    background-color: $primaryColor;
+    border-radius: 20px;
+    text-align: center;
+    legend {
+        font-size:36px;
+        text-align:center;  
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    [type="text"], [type="email"], select{
+        width: 30%;
+        border-radius: 20px;
+    }
+
+    textarea, #recipeDescription {
+        width: 70%;
+        border-radius: 20px;
+        text-align: left;
+    }
+
+    [type="number"] {
+        width: 6%;
+        border-radius: 20px;
+    }
+
+    ::placeholder, option {
+        text-align: center;
+        color: $primaryAccentColor;
+    }
+
+    [type="radio"] {
+        margin: 10px;
+    }    
+
+    [type="submit"], [type="reset"], [type="button"], input::file-selector-button{
+        @include buttonStyles;
+        font-family: $headingFont;
+        color: white;
+        margin: 10px;      
+    }
+    [type="submit"]:hover, [type="reset"]:hover, [type="button"]:hover, input::file-selector-button:hover{
+        @include buttonHoverStyles;
+        font-family: $headingFont;
+        color: black;
+    }
+}
+
+@mixin confirmationMessageStyles {
+    width: 50%;
+    margin: auto;
+    background-color: $primaryColor;
+    border-radius: 20px;
+    text-align: center;
+    button {
+        @include buttonStyles;
+    }
+    button:hover {
+        @include buttonHoverStyles;
+    }
+    
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, a {
+    font-family: $headingFont;
+}
+
+p {
+    font-family: $bodyFont;
+}
+
+.container {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0;
+}
+
+.navigationBar { 
+    grid-column: 1 / -1;
+    grid-row: 1;
+    background-color: $secondaryColor;
+    display: grid;
+    grid-template-areas: "img nav nav nav nav nav";
+    grid-template-columns: auto 1fr;
+    align-items: center;   
+    img {
+        grid-area: img;
+        padding: 15px;
+    }
+    nav {
+        grid-area: nav;
+        text-align: center;
+        @include navStyles;
+        button {
+            @include buttonStyles;    
+        }
+        button:hover {
+            @include buttonHoverStyles;
+        }
+    }
+
+}
+
+main {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    background-color: $tertiaryColor;
+}
+
+#homePage {
+    display: grid; 
+    grid-template-areas: 
+        'featuredImg featuredImg featuredDesc featuredDesc'
+        'callout1 callout1 callout2 callout2';
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+    justify-items: center;
+
+    #featuredRecipe {
+        background-color: $primaryColor;       
+        display: contents;
+        #featuredRecipeImg {
+            grid-area: featuredImg;
+            justify-self: start;
+            img {
+                width: 160%;
+                object-fit: cover;
+            }
+        }
+        #featuredRecipeDesc {
+            grid-area: featuredDesc;
+            justify-self: start;
+            text-align: center; 
+            padding-right: 20px;
+            //background-color: $primaryColor;   
+            h2, p, button {
+                padding: 30px;
+            }
+            p {
+                font-size: larger;
+            }
+            button {
+                @include buttonStyles;
+            }
+            button:hover {
+                @include buttonHoverStyles;
+            }
+        }        
+    }
+    #pageCallouts {
+        display: contents;
+        @include figureStyle;
+        figure:nth-child(1) {
+            grid-area: callout1;
+        }
+        figure:nth-child(2) {
+            grid-area: callout2;
+        }
+    }
+}
+
+#submitRecipePage, #addRecipePage {
+    padding-top: 15px;
+    form {
+        @include formStyles;
+    }
+}
+
+.confirmationContainer{
+    @include container;
+    background-color: $tertiaryColor;
+    text-align: center;
+    div, h1, p, button {
+        padding: 10px
+    }
+    #submitRecipeConfirmation {
+       @include confirmationMessageStyles;
+       margin-top: 10px;
+       p {
+        font-size: larger;
+       }
+    }
+}
+    
+
+#contactPage {
+    padding-top: 15px;
+    form	{
+        @include formStyles;
+    }
+}
+
+footer {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    background-color: $secondaryColor;
+    text-align: center;
+    //height: 100%;
+    .footerNav {
+        @include navStyles;
+    }
+    p {
+        color: $tertiaryColor;
+    }
+}
