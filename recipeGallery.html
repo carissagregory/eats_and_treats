@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--external js file-->
+    <script defer src="js/eatsAndTreatsJS.js"></script>
+    <!--headings font-->
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <!--regular text font-->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!--css-->
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <!--logo-->
+    <link rel="icon" href="images/eatsAndTreatsLogo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="descripton" content="Recipe Gallery page">    
+    <title>About Us Page</title>
+</head>
+<body class="container">
+        <div class="navigationBar">
+            <img src="images/eatsAndTreatsLogo.png" alt="eats and treats logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                    <li><a href="recipeTips.html">Recipe Tips</a></li>
+                    <li><a href="recipeGallery.html">Recipes</a></li>
+                    <li><a href="submitRecipe.html">Submit Recipe</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div><!--navigationBar-->  
+        <main id="recipeGalleryPage">
+            <div id="bFigureTemplate">
+                <h1>Breakfast:</h1>
+                    <template id="breakfastRecipes">
+                        <figure id="breakfastRecipe1">
+                            <img src="images/breakfast/" alt="recipe image">
+                            <figcaption>
+                                <h2>Recipe Name</h2>
+                                <!--could display tags ie: mins, difficulty-->
+                                <p>Description</p>
+                            </figcaption>
+                        </figure>
+                    </template>
+            </div><!--breakfastRecipes close-->
+            <div id="entreeRecipes">
+                <h1>Entrées:</h1>
+                    <template id="eFigureTemplate">
+                        <figure id="entreeRecipe1">
+                            <img src="images/entrees/" alt="recipe image">
+                            <figcaption>
+                                <h2>Recipe Name</h2>
+                                <p>Description</p>
+                            </figcaption>
+                        </figure>
+                    </template>
+            </div><!--entreeRecipes close-->
+            <div id="dessertRecipes">
+                <h1>Dessert:</h1>
+                    <template id="dFigureTemplate">
+                        <figure id="dessertRecipe1">
+                            <img src="images/desserts/" alt="recipe image">
+                            <figcaption>
+                                <h2>Recipe Name</h2>
+                                <p>Description</p>
+                            </figcaption>
+                        </figure>
+                    </template>
+            </div><!--dessertRecipes close-->
+        </main>
+        <footer>
+            <div class="footerNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                    <li><a href="recipeTips.html">Recipe Tips</a></li>
+                    <li><a href="recipeGallery.html">Recipes</a></li>
+                    <li><a href="submitRecipe.html">Submit Recipe</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>    
+            </div><!--footerNav-->    
+                <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+        </footer>
+</body>
+</html>
