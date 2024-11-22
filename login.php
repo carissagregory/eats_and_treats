@@ -1,13 +1,9 @@
 <?php
-    session_start();        //gives us access to a session, or starts a new one if needed
-    //check if the form was submitted or needs to be displayed to the customer
+    session_start();
 
-    //$errorMessage = "";       //option 1- set global variable
-
-    if($_SESSION['validSession'] === "yes"){
-        //if you are a 'validSession' then you should see the Admin page 
-        //  you do not need to sign on again
-        $validUser = true;  //set flag for valid user to display the Admin Page
+    if (isset($_SESSION['logInSession']) && $_SESSION['logInSession'] === "yes"){
+        //if the logInSession is valid then the user can acces the admin page not the login page again
+        $validLogIn = true;  //set flag for validLogIn to display the Admin Page
     }
     else {
         if (isset($_POST['submit'])) {
@@ -29,13 +25,12 @@
             */
 
             $inUsername = $_POST['inUsername'];
-            $inPassword = $_POST['inPassword'];   //pull the username from the login form
+            $inPassword = $_POST['inPassword']; 
 
             try{
-                require '../../dbConnect.php';        //access to the database 
+                require 'dbConnect.php';        //access to the database 
                 
                 //does the input username AND password MATCH the username AND password in the datebase?
-                //SELECT for a specific set of data WHERE
                 $sql = "SELECT COUNT(*) FROM eats_and_treats_users WHERE user_username = :username AND user_password = :password";
         
                 $stmt = $conn->prepare($sql);
@@ -49,29 +44,18 @@
                 // Fetch the count
                 $rowCount = $stmt->fetchColumn();       //get number of rows in result set/statement
 
-
-                /* 
-                echo "Username: $username <br>";
-                echo "Password: $password <br>";
-                echo "Count: $rowCount <br>";
-                */
                 if ($rowCount > 0) {
                     //valid username/passwod
-                    //echo "<h3> Login successful </h3>";
-                    $validUser = true;          //switch aka flag
-                    $_SESSION['validSession'] = "yes";  //Valid user- allow access to the admin page
+                    $validLogIn = true;          //switch aka flag
+                    $_SESSION['logInSession'] = "yes";  //valid log in- allow access to the admin page
                 } else {
                     //invalid
-                    //echo "<h3> Invalid username or password </h3>";
-                    $validUser = false;
-                    $errorMessage = "Invalid username/password, please try again.";
-                    $_SESSION['validSession'] = "no";       //invalid user - do Not allow access
+                    $validLogIn = false;
+                    $errorMessage = "<p id='errorMessage'>Invalid username/password, please try again.</p>";
+                    $_SESSION['LogInSession'] = "no";       //invalid log in - do NOT allow access
                 }
                 
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);       //return values as an associative array
-            
-                // Prepare and execute the query
-
             }
             catch(PDOException $e) {
                 echo "Database Failed: " . $e->getMessage();
@@ -102,37 +86,89 @@
     <title>Log In Page</title>
 </head>
 <body class="container">
-        <div class="navigationBar">
-            <img src="images/eatsAndTreatsLogo.png" alt="eats and treats logo">
-            <nav>
-                <ul>
-                    <button class="logoutButton"><a href="index.html">Log Out</a></button>
-                </ul>
-            </nav>
-        </div><!--navigationBar-->  
-        <main id="loginPage">
-            <div id="">
-            <figure>
-                    <h2>Add a Recipe</h2>
-                    <figcaption>
-                        <button><a href="addRecipe.php" target="_blank">Add a Recipe</a></button>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2>Delete a Recipe</h2>
-                    <figcaption>
-                        <button><a href="deleteRecipe.php" target="_blank">Delete a Recipe</a></button>
-                    </figcaption>
-                </figure>
+    <?php
+        if (isset($_POST['submit']) && $validLogIn === true) {
+            //display admin features
+    ?>    
+    <div class="navigationBar">
+        <nav>
+            <ul>
+                <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+            </ul>
+        </nav>
+    </div><!--navigationBar-->  
+    <main id="adminFeatures">
+        <figure id="addRecipe">
+            <h2>Add a Recipe</h2>
+            <figcaption>
+                <a href="addRecipe.php" target="_blank"><button><h4>Add a Recipe</h4></button></a>
+            </figcaption>
+        </figure>
+        <figure id="deleteRecipe">
+            <h2>Delete a Recipe</h2>
+            <figcaption>
+                <a href="deleteRecipe.php" target="_blank"><button><h4>Display Recipes</h4></button></a>
+            </figcaption>
+        </figure>
+    </main>
+    <footer>
+        <div class="footerNav">
+            <ul>
+                <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+            </ul>    
+        </div><!--footerNav-->    
+            <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+    </footer>
+    <?php
+       }
+        else {
+        //display form
+    ?>
+    <div class="navigationBar">
+    <img src="images/eatsAndTreatsLogo.png" alt="eats and treats logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+    </div><!--navigationBar-->  
+    <main id="loginForm">
+        <!--this section will display when the user asks to login to the application-->
+        <form id="loginForm" name="loginForm" method="post" action="login.php">
+            <legend>Log In Form</legend>
+            <div class="errorMessageFormat">
+                <?php
+                    if (isset($errorMessage)) {
+                        echo $errorMessage;
+                    }
+                ?>
             </div>
-        </main>
-        <footer>
-            <div class="footerNav">
-                <ul>
-                    <button class="logoutButton"><a href="index.html" onclick="logOut()">Log Out</a></button>
-                </ul>    
-            </div><!--footerNav-->    
-                <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
-        </footer>
+            <p>
+                <label for="inUsername">Username: </label>
+                <br>
+                <input type="text" name="inUsername" id="inUsername" required>
+            </p>
+            <p>
+                <label for="inPassword">Password: </label>
+                <br>
+                <input type="password" name="inPassword" id="inPassword" required>
+            </p>
+            <p>
+                <input type="submit" name="submit" value="Submit">
+                <input type="reset">
+            </p>
+        </form>
+    </main>
+    <footer>
+        <div class="footerNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>    
+        </div><!--footerNav-->    
+            <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+    </footer>   
+    <?php
+        }
+    ?>
 </body>
 </html>
