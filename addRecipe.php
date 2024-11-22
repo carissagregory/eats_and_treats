@@ -5,11 +5,12 @@
     //once submit is clicked display confirmation message with button to the admin page
     //change js current year to php current year
     session_start();
-    if (!isset($_SESSION['logInSession']) || $_SESSION['logInSession'] !== "yes"){
+    
+    if ($_SESSION['logInSession'] !== "yes") {
         //you are not a valid user and CANNOT access this page - return to login
+        $validLogIn = false;
         header("Location: login.php");    //server side redirect
-    }
-    else {
+    }   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +38,7 @@
             <nav>
                 <ul>
                     <li><a href="login.php">Admin</a></li>
-                    <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+                    <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
                 </ul>
             </nav>
         </div><!--navigationBar-->  
@@ -185,13 +186,10 @@
             <div class="footerNav">
                 <ul>
                     <li><a href="login.php">Admin</a></li>
-                    <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+                    <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
                 </ul>    
             </div><!--footerNav-->    
                 <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
         </footer>
-        <?php
-            }
-        ?>
 </body>
 </html>
