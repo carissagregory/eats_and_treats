@@ -1,8 +1,15 @@
 <?php
+    
     //connect to the database
     //use insert to add recipes to the eats_and_treats_recipe table
     //once submit is clicked display confirmation message with button to the admin page
     //change js current year to php current year
+    session_start();
+    if (!isset($_SESSION['logInSession']) || $_SESSION['logInSession'] !== "yes"){
+        //you are not a valid user and CANNOT access this page - return to login
+        header("Location: login.php");    //server side redirect
+    }
+    else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +37,7 @@
             <nav>
                 <ul>
                     <li><a href="login.php">Admin</a></li>
-                    <button class="logoutButton"><a href="login.php">Log Out</a></button>
+                    <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
                 </ul>
             </nav>
         </div><!--navigationBar-->  
@@ -177,11 +184,14 @@
         <footer>
             <div class="footerNav">
                 <ul>
-                <li><a href="login.php">Admin</a></li>
-                    <button class="logoutButton"><a href="login.php">Log Out</a></button>
+                    <li><a href="login.php">Admin</a></li>
+                    <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
                 </ul>    
             </div><!--footerNav-->    
                 <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
         </footer>
+        <?php
+            }
+        ?>
 </body>
 </html>
