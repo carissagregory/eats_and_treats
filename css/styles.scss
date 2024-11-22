@@ -6,6 +6,7 @@ $secondaryColor: #344E41;
 $tertiaryColor: #dad7cd;
 $primaryAccentColor: #588157;
 $secondaryAccentColor: #3A5A40;
+$errorMessageColor: #973333;
 
 //defining fonts
 $headingFont: "Mate SC", serif;;
@@ -45,15 +46,15 @@ $bodyFont: "Quicksand", sans-serif;
     border: none;
     padding: 10px;
     margin: 0 auto;
-    a, p {
+    h4 {
         color: white;
-        text-decoration: none;
+        text-decoration: none;        
     }
 }
 
 @mixin buttonHoverStyles {
     background-color: $tertiaryColor;
-    a:hover, p:hover {
+    h4:hover {
         color: black;
     }
 }
@@ -101,7 +102,7 @@ $bodyFont: "Quicksand", sans-serif;
         margin-bottom: 15px;
     }
 
-    [type="text"], [type="email"], select{
+    [type="text"], [type="email"], select, [type="password"]{
         width: 30%;
         border-radius: 20px;
     }
@@ -160,7 +161,7 @@ $bodyFont: "Quicksand", sans-serif;
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6 {
     font-family: $headingFont;
 }
 
@@ -284,11 +285,34 @@ main {
     }
 }
     
-
 #contactPage {
     padding-top: 15px;
     form	{
         @include formStyles;
+    }
+}
+
+//adminFeatures and loginForm are styles for login.php page
+#adminFeatures {
+    padding-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;    
+    @include figureStyle;
+    justify-items: center;
+    figure {
+        height: 25%;
+    }  
+}
+#loginForm {
+    padding-top: 15px;
+    form {
+        @include formStyles;
+        #errorMessage {
+            padding: 55px 0;
+            font-style: italic;
+            color: $errorMessageColor;
+        }
     }
 }
 
@@ -300,6 +324,12 @@ footer {
     //height: 100%;
     .footerNav {
         @include navStyles;
+        button {
+            @include buttonStyles;    
+        }
+        button:hover {
+            @include buttonHoverStyles;
+        }
     }
     p {
         color: $tertiaryColor;
