@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['logInSession']) && $_SESSION['logInSession'] === "yes"){
+    if ($_SESSION['logInSession'] === "yes") {
         //if the logInSession is valid then the user can acces the admin page not the login page again
         $validLogIn = true;  //set flag for validLogIn to display the Admin Page
     }
@@ -64,7 +64,7 @@
         else {
             //the customer needs to see the form in order to fill it out and SUBMIT it for signin
         }
-    }//end of check for 'validSession
+    }//end of check for 'validSession'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,13 +87,13 @@
 </head>
 <body class="container">
     <?php
-        if (isset($_POST['submit']) && $validLogIn === true) {
+        if (isset($_POST['submit']) || $validLogIn === true) {
             //display admin features
     ?>    
     <div class="navigationBar">
         <nav>
             <ul>
-                <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+                <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
             </ul>
         </nav>
     </div><!--navigationBar-->  
@@ -114,7 +114,7 @@
     <footer>
         <div class="footerNav">
             <ul>
-                <a href="login.php"><button class="logoutButton"><h4>Log Out</h4></button></a>
+                <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
             </ul>    
         </div><!--footerNav-->    
             <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
@@ -129,13 +129,18 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="aboutUs.html">About Us</a></li>
+            <li><a href="recipeTips.html">Recipe Tips</a></li>
+            <li><a href="recipeGallery.html">Recipes</a></li>
+            <li><a href="submitRecipe.html">Submit Recipe</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </nav>
     </div><!--navigationBar-->  
     <main id="loginForm">
         <!--this section will display when the user asks to login to the application-->
         <form id="loginForm" name="loginForm" method="post" action="login.php">
-            <legend>Log In Form</legend>
+            <legend>Log In</legend>
             <div class="errorMessageFormat">
                 <?php
                     if (isset($errorMessage)) {
@@ -163,6 +168,11 @@
         <div class="footerNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="recipeTips.html">Recipe Tips</a></li>
+                <li><a href="recipeGallery.html">Recipes</a></li>
+                <li><a href="submitRecipe.html">Submit Recipe</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>    
         </div><!--footerNav-->    
             <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
