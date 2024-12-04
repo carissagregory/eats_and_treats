@@ -165,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $headingFont;
 }
 
-p {
+p, ul li, ol li {
     font-family: $bodyFont;
 }
 
@@ -316,7 +316,34 @@ main {
 }
 
 #displayRecipes {
-    text-align: center;
+    h1 {
+        text-align: center;
+    }
+    .recipes {
+        ul {
+            margin-left: 10px;
+            padding-left: 10px;
+            li {
+                list-style-type: circle;
+            }
+        }
+        ol {
+            margin-left: 10px;
+            padding-left: 10px;
+            li {
+                font-size: small;
+            }
+        }
+        button {
+            @include buttonStyles;
+            a {
+                text-decoration: none;
+            }
+        }
+        button:hover {
+            @include buttonHoverStyles;
+        }
+    }
 }
 
 footer {

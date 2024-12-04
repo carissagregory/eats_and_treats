@@ -8,6 +8,7 @@
         require 'dbConnect.php';
 
         $sql = "SELECT 
+                    recipeId,
                     recipeName, 
                     recipeAuthor,
                     recipeNumServings,
@@ -67,47 +68,64 @@
         </nav>
     </div><!--navigationBar-->  
     <main id="displayRecipes">
-        <div id="recipeRecords">
-            <div>
                 <!--
                     Creating alt way of displaying data instead of as a table
-                        In recipeNumber section use js to update record number 
+                        use recipeId column to display recipe number
                         Add styling
+                        decode json objects and display array as a list
                     Add delete confirmation js functionality to eatsAndTreatsJS.js
                     Add eventId variable and add column to sql statement
                     Add delete and update php
-
                 -->
-                <h2>Recipe </h2>
-                <p>RecipeName</p>
+                <h1>All Recipes</h1>
                 <?php
                 while($eventRow = $stmt->fetch()){
                     echo "<div class='recipes'>";
-                    echo "Recipe <section class='recipeNumber'></section>";
+                    echo "<h2> Recipe " . $eventRow["recipeId"] . "</h2>";
                     echo "<h3> Name: </h3>";
                     echo "<p>" . $eventRow["recipeName"] . "</p>";
                     echo "<p>" . $eventRow["recipeAuthor"] . "</p>";
-                    echo "<p>" . $eventRow["recipeNumServings"] . "</p>";
-                    echo "<p>" . $eventRow["recipeServingKind"] . "</p>";
-                    echo "<p>" . $eventRow["recipeCookingTime"] . "</p>";
+                    echo "<p>" . $eventRow["recipeNumServings"] . " " . $eventRow["recipeServingKind"] . "</p>";
+                    echo "<p>" . $eventRow["recipeCookingTime"] . " minutes</p>";
                     echo "<p>" . $eventRow["recipeDifficulty"] . "</p>";
                     echo "<p>" . $eventRow["recipeCategory"] . "</p>";
                     echo "<p>" . $eventRow["recipeDescription"] . "</p>";
-                    echo "<p>" . $eventRow["recipeMeasurements"] . "</p>";
-                    echo "<p>" . $eventRow["recipeVolumes"] . "</p>";
-                    echo "<p>" . $eventRow["recipeTypes"] . "</p>";
-                    echo "<p>" . $eventRow["recipeDirections"] . "</p>";
+
+                    $measurements = json_decode($eventRow["recipeMeasurements"]);
+                    echo "<ul>";
+                    foreach($measurements as $measurement) {
+                        echo "<li>" . htmlspecialchars($measurement) . "</li>";
+                    }
+                    echo "</ul>";
+
+                    $volumes = json_decode($eventRow["recipeVolumes"]);
+                    echo "<ul>";
+                    foreach($volumes as $volume) {
+                        echo "<li>" . htmlspecialchars($volume) . "</li>";
+                    }
+                    echo "</ul>";
+
+                    $types = json_decode($eventRow["recipeTypes"]);
+                    echo "<ul>";
+                    foreach($types as $type) {
+                        echo "<li>" . htmlspecialchars($type) . "</li>";
+                    }
+                    echo "</ul>";
+
+                    $directions = json_decode($eventRow["recipeDirections"]);
+                    echo "<ol>";
+                    foreach($directions as $direction) {
+                        echo "<li>" . htmlspecialchars($direction) . "</li>";
+                    }
+                    echo "</ol>";
+
                     echo "<p>" . $eventRow["recipeImageName"] . "</p>";
                     echo "<p>" . $eventRow["recipeImage"] . "</p>";
-                    echo "<section class='modifyButtons>";
-                    echo "<button> <a href='updateEvent.php?eventsID=" . $eventRow["events_id"] . "'> Update </a> </button>";
-                    echo "<button onclick='confirmDelete(" . $eventRow['events_id'] . ")'> Delete</button>";
-                    echo "</section>";
+                    echo "<button> <a href='updateEvent.php?eventsID=" . $eventRow["events_id"] . "'> <h4> Update </h4> </a> </button>";
+                    echo "<button onclick='confirmDelete(" . $eventRow['events_id'] . ")'> <h4> Delete </h4> </button>";
                     echo "</div>";
                 }
             ?>
-            </div>
-        </div>
     </main>
     <footer>
         <div class="footerNav">
