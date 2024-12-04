@@ -10,15 +10,13 @@ let currentYear = new Date();
 
 currentDate(currentYear);
 
-//defining recipe obejct
-let recipeObject = [];
+let submitRecipeForm = document.querySelector("#submitRecipeForm");
 
-//submit a recipe form validation
 //  get form values
 let recipeName = document.querySelector("#recipeName");
 let recipeAuthor = document.querySelector("#recipeAuthor");
 let recipeNumServings = document.querySelector("#recipeNumServings");
-let recipeServingType = document.querySelector("#recipeServingType");
+let recipeServingKind = document.querySelector("#recipeServingKind");
 let recipeCookingTime = document.querySelector("#recipeCookingTime");
 let recipeDifficulty = document.querySelector("#recipeDifficultyLevel");
 let recipeCategory = document.querySelectorAll("input[name='recipeCategory']");
@@ -130,7 +128,7 @@ function validateRecipeFormFields() {
 
     let volumeFields = true;
     ingredientVolume.forEach(volume => {
-        if (volume.value.trim() == "") {
+        if (volume.value == "") {
             volumeFields = false;
         }
     });
@@ -152,49 +150,32 @@ function validateRecipeFormFields() {
     });
 
     if (
-        recipeName.value.trim() != "" && 
-        recipeAuthor.value.trim() != "" && 
-        recipeNumServings.value.trim() != "" && 
-        recipeServingType.value.trim() != "" &&
-        recipeCookingTime.value.trim() != "" &&
-        recipeDifficulty.value.trim() != "" &&
-        selectedRadioButton &&
-        recipeDescription.value.trim() != "" &&
-        measurementFields &&
-        volumeFields &&
-        typeFields &&
-        directionFields &&
-        inRecipeImageName.value.trim() != "" &&
-        inRecipeImage.files.length != 0
+            recipeName.value.trim() != "" && 
+            recipeAuthor.value.trim() != "" && 
+            recipeNumServings.value.trim() != "" && 
+            recipeServingKind.value.trim() != "" &&
+            recipeCookingTime.value.trim() != "" &&
+            recipeDifficulty.value.trim() != "" &&
+            selectedRadioButton &&
+            recipeDescription.value.trim() != "" &&
+            measurementFields &&
+            volumeFields &&
+            typeFields &&
+            directionFields &&
+            inRecipeImageName.value.trim() != "" &&
+            inRecipeImage.files.length != 0
         ){
-        alert("form fields are NOT blank");
-        //gather values from the form fields 
-        //send form value into the recipe object
-        //  define inputRecipe object
-        //  fill the measurements, volumnes, types, and directions fields using push
-        //  once all the values are gathered push inputRecipe object into the recipe arrayObject
-        //  use the JSON.Stringify to conver the js object to a JSON object
-        //reset all form fields 
-        //run the submit method
-        let inputRecipe = {
-            name: recipeName.value.trim(),
-            author: recipeAuthor.value.trim(), 
-            numServings: recipeNumServings.value.trim(),
-            servingType: recipeServingType.value.trim(), 
-            cookingTime: recipeCookingTime.value.trim(),
-            difficulty: recipeDifficulty.value.trim(),
-            category: "",
-            description: "",
-            measurements: [],
-            volumes: [],
-            types: [],
-            directions: [],
-            imageName: "",
-            image: ""
-        }
-    }
-    else {
-        alert("form fields are blank")
-    }
+            alert("form fields are NOT blank");
+            //all form fields pass validation
+            //run the reset method
+            //run the submit method
 
+            //loadRecipesObject();
+            submitRecipeForm.submit();
+        }
+        else {
+            //form field(s) do not pass validation
+            //display error message
+            alert("form fields are blank")
+        }
 }
