@@ -5,11 +5,9 @@
     //once submit is clicked display confirmation message with button to the admin page
     //change js current year to php current year
     session_start();
-    
+
     if ($_SESSION['logInSession'] !== "yes") {
-        //you are not a valid user and CANNOT access this page - return to login
-        $validLogIn = false;
-        header("Location: login.php");    //server side redirect
+        header("Location: login.php");
     }   
 ?>
 <!DOCTYPE html>
@@ -43,8 +41,8 @@
             </nav>
         </div><!--navigationBar-->  
         <main id="addRecipePage">
-            <form id="addRecipeForm" name="addRecipeForm" method="post" action="php/recipeFormHandler.php" enctype="multipart/form-data">
-                <legend>Add a Recipe</legend>
+        <form id="submitRecipeForm" name="submitRecipeForm" method="post" action="php/recipeFormHandler.php" enctype="multipart/form-data">
+                <legend>Upload a Recipe</legend>
                 <p>
                     <label for="recipeName">Recipe Name:</label> 
                     <br>
@@ -57,11 +55,11 @@
                 </p><!--recipeAuthor close-->
                 <p>
                     <label for="recipeNumServings">Number of Servings:</label>
-                    <label for="recipeServingType">Type of Serving:</label>
+                    <label for="recipeServingKind">Type of Serving:</label>
                     <br>
                     <input type="number" name="recipeNumServings" id="recipeNumServings" placeholder="3, 24">
                     <!--Could do dropdown for serving type(servings, cookies, cupcakes, cakes)-->
-                    <input type="text" name="recipeServingType" id="recipeServingType" placeholder="People, Cookies">
+                    <input type="text" name="recipeServingKind" id="recipeServingKind" placeholder="People, Cookies">
                 </p><!--recipeServings close-->
                 <p>
                     <label for="recipeCookingTime">Cooking Time(in minutes):</label>
@@ -81,11 +79,11 @@
                 <h4>Recipe Category:</h4>
                 <p>
                     <label for="breakfastCategory">Breakfast</label> 
-                    <input type="radio" name="recipeCategory" id="breakfastCategory">
+                    <input type="radio" name="recipeCategory" id="breakfastCategory" value="breakfast">
                     <label for="entreeCategory">Entrée</label> 
-                    <input type="radio" name="recipeCategory" id="entreeCategory">
+                    <input type="radio" name="recipeCategory" id="entreeCategory" value="entree">
                     <label for="dessertCategory">Dessert</label> 
-                    <input type="radio" name="recipeCategory" id="dessertCategory">
+                    <input type="radio" name="recipeCategory" id="dessertCategory" value="dessert">
                 </p><!--recipeCategory close-->
                 <p>
                     <label for="recipeDescription">Recipe Description:</label>
@@ -112,6 +110,9 @@
                             <option value="oz">oz</option>
                             <option value="flOz">fl oz</option>
                             <option value="lb">lb</option>
+                            <option value="clove">clove</option>
+                            <option value="small">small</option>
+                            <option value="medium">medium</option>
                             <option value="large">large</option>
                         </select>                    
                         <br>
@@ -136,6 +137,9 @@
                                 <option value="oz">oz</option>
                                 <option value="flOz">fl oz</option>
                                 <option value="lb">lb</option>
+                                <option value="clove">clove</option>
+                                <option value="small">small</option>
+                                <option value="medium">medium</option>
                                 <option value="large">large</option>
                             </select>                    
                             <br>
@@ -177,7 +181,7 @@
                     <input type="file" name="inRecipeImage" id="inRecipeImage" accept=".jpg,.gif,.png,.svg">
                 </p><!--uploadRecipeImage close-->
                 <p>
-                    <input type="button" name="submit" id="submit" value="Submit" onclick="validateRecipeFormFields()">
+                    <input type="button" name="submitRecipe" id="submitRecipe" value="Submit" onclick="validateRecipeFormFields()">
                     <input type="reset" name="reset" id="reset" value="Reset">
                 </p>
             </form>
@@ -189,7 +193,7 @@
                     <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
                 </ul>    
             </div><!--footerNav-->    
-                <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+                <p>Eats and Treats Copyright &copy <?php echo date("Y");?></p>        
         </footer>
 </body>
 </html>
