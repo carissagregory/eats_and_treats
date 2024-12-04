@@ -104,18 +104,18 @@ $bodyFont: "Quicksand", sans-serif;
 
     [type="text"], [type="email"], select, [type="password"]{
         width: 30%;
-        border-radius: 20px;
+        //border-radius: 20px;
     }
 
     textarea, #recipeDescription {
         width: 70%;
-        border-radius: 20px;
+        //border-radius: 20px;
         text-align: left;
     }
 
     [type="number"] {
         width: 6%;
-        border-radius: 20px;
+        //border-radius: 20px;
     }
 
     ::placeholder, option {
@@ -219,8 +219,7 @@ main {
     gap: 20px;
     justify-items: center;
 
-    #featuredRecipe {
-        background-color: $primaryColor;       
+    #featuredRecipe {      
         display: contents;
         #featuredRecipeImg {
             grid-area: featuredImg;
