@@ -117,7 +117,7 @@
                 <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
             </ul>    
         </div><!--footerNav-->    
-            <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+            <p>Eats and Treats Copyright &copy <?php echo date("Y");?></p>        
     </footer>
     <?php
        }
@@ -175,7 +175,7 @@
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>    
         </div><!--footerNav-->    
-            <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+            <p>Eats and Treats Copyright &copy <?php echo date("Y");?></p>        
     </footer>   
     <?php
         }
