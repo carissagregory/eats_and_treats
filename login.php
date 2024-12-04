@@ -107,7 +107,7 @@
         <figure id="deleteRecipe">
             <h2>Delete a Recipe</h2>
             <figcaption>
-                <a href="deleteRecipe.php" target="_blank"><button><h4>Display Recipes</h4></button></a>
+                <a href="displayRecipes.php" target="_blank"><button><h4>Display Recipes</h4></button></a>
             </figcaption>
         </figure>
     </main>
