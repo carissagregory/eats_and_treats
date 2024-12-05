@@ -66,7 +66,7 @@ function addIngredientFields() {
    document.querySelector("#ingredientsFields").appendChild(addIngredientFields);
     
    ingredientCounter++;
-}    
+}
 
 let directionCounter = 2;
 
