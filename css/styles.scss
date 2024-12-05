@@ -67,13 +67,33 @@ $bodyFont: "Quicksand", sans-serif;
         text-align: center;
         width: 50%;
         height: 70%;
-        img {
-            width: 50%;
-            height: auto;
-            object-fit: cover;
-        }
         h2 {
             padding: 25px;
+        }
+        figcaption {
+            padding: 5px;
+            button {
+                @include buttonStyles;
+            }
+            button:hover {
+                @include buttonHoverStyles;
+            }
+        }
+    } 
+}
+
+@mixin recipeFigureStyles {
+    figure {
+        margin-bottom: 15px;
+        padding: 5px;
+        background-color: $primaryColor;
+        text-align: center;
+        max-width: 100%;
+        height: auto;
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
         }
         figcaption {
             padding: 5px;
@@ -257,6 +277,63 @@ main {
         }
         figure:nth-child(2) {
             grid-area: callout2;
+        }
+    }
+}
+
+#recipeGalleryPage {
+    h1 {
+        padding: 10px;
+    }
+    @include recipeFigureStyles;
+
+    #breakfastRecipes, #entreeRecipes, #dessertRecipes{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        justify-content: center;
+        padding-left: 10px;
+    }
+}
+
+#individualRecipePage {
+    #recipeContainer {
+        background-color: $primaryColor;
+        width: 80%;
+        margin: 0 auto;
+        button {
+            @include buttonStyles;
+        }
+        button:hover {
+            @include buttonHoverStyles;
+        }
+
+        #ingredients, #directions {
+            .ingredientsAccordion, .directionsAccordion {
+                background-color: $primaryColor;
+                color: #000000;
+                cursor: pointer;
+                padding: 18px;
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                transition: 0.4s;
+
+                .ingredientsAccordion:hover, .directionsAccordion:hover {
+                    background-color: $primaryAccentColor;
+                }
+            }
+
+            .ingredientsPanel, .directionsPanel {
+                padding: 0 18px;
+                background-color: $secondaryAccentColor;
+                font-size: 18px;
+                display: none;
+                overflow: hidden;
+            }
+
         }
     }
 }
