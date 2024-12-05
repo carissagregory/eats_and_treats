@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--external js files-->
+    <script defer src="js/eatsAndTreatsJS.js"></script>
+    <script defer src="js/individualRecipe.js"></script>
+    <!--headings font-->
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <!--regular text font-->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!--css-->
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <!--logo-->
+    <link rel="icon" href="images/eatsAndTreatsLogo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="descripton" content="Individual Recipe">    
+    <title>Individual Recipe</title>
+</head>
+<body class="container">
+        <div class="navigationBar">
+            <img src="images/eatsAndTreatsLogo.png" alt="eats and treats logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                    <li><a href="recipeTips.html">Recipe Tips</a></li>
+                    <li><a href="recipeGallery.html">Recipes</a></li>
+                    <li><a href="submitRecipe.html">Submit Recipe</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div><!--navigationBar-->  
+        <main id="individualRecipePage">
+            <div id="recipeContainer">
+                <template>
+                    <div id="recipeInformation">
+                        <h1>Recipe Name</h1>   
+                        <h3>Author</h3>
+                        <h3> <section id="servingNumber"></section> <section id="servingKind"></section> </h3>
+                        <h3>Cooking Time</h3>
+                        <h3>Difficulty</h3>
+                        <h3>Recipe Category</h3>
+                        <img src="" alt="">
+                        <div id="servingButtons">
+                            <button id="halfServing" onclick="halfServing()"> <h4></h4> </button>
+                            <button id="defaultServing" onclick="defaultServing()"> <h4></h4> </button>
+                            <button id="doubleServing" onclick="doubleServing()"> <h4></h4> </button>
+                        </div><!--servingsButtons close-->
+                        <p>Description</p>
+                    </div><!--recipeInformation close-->
+                    <div id="ingredients">
+                        <button class="ingredientsAccordion"></button>
+                        <div class="ingredientsPanel">
+                            <ul>
+                                <li> <span class="measurement"></span> <span class="volume"></span> <span class="type"></span> </li>
+                            </ul>
+                        </div>
+                    </div><!--ingredients close-->
+                    <div id="directions">
+                        <button class="directionsAccordion"></button>
+                        <div class="directionsPanel">
+                            <ol>
+                                <li></li>
+                            </ol>
+                        </div>
+                    </div><!--directions close-->
+                </template>                
+            </div>
+        </main>
+        <footer>
+            <div class="footerNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                    <li><a href="recipeTips.html">Recipe Tips</a></li>
+                    <li><a href="recipeGallery.html">Recipes</a></li>
+                    <li><a href="submitRecipe.html">Submit Recipe</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>    
+            </div><!--footerNav-->    
+                <p>Eats and Treats Copyright &copy <span class="copyrightYear">year</span></p>        
+        </footer>
+</body>
+</html>
