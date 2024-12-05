@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--external js file-->
+    <!--external js files-->
     <script defer src="js/eatsAndTreatsJS.js"></script>
+    <script defer src="js/displayRecipes.js"></script>
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <!--regular text font-->
@@ -13,9 +14,9 @@
     <link rel="icon" href="images/eatsAndTreatsLogo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="">
-    <meta name="descripton" content="Recipe Gallery page">    
-    <title>About Us Page</title>
+    <meta name="keywords" content="Breakfast recipes, Entree recipes, Dessert Recipes">
+    <meta name="descripton" content="Recipe Gallery">    
+    <title>Recipe Gallery</title>
 </head>
 <body class="container">
         <div class="navigationBar">
@@ -32,42 +33,45 @@
             </nav>
         </div><!--navigationBar-->  
         <main id="recipeGalleryPage">
-            <div id="bFigureTemplate">
-                <h1>Breakfast:</h1>
-                    <template id="breakfastRecipes">
-                        <figure id="breakfastRecipe1">
-                            <img src="images/breakfast/" alt="recipe image">
-                            <figcaption>
-                                <h2>Recipe Name</h2>
-                                <!--could display tags ie: mins, difficulty-->
-                                <p>Description</p>
-                            </figcaption>
-                        </figure>
-                    </template>
+            <h1>Breakfast:</h1>
+            <div id="breakfastRecipes">    
+                <template id="bFigureTemplate">
+                    <figure id="breakfastRecipe1">
+                        <img src="images/breakfast/" alt="recipe image">
+                        <figcaption>
+                            <h2>Recipe Name</h2>
+                            <!--could display tags ie: mins, difficulty-->
+                            <p>Description</p>
+                            <a href="individualRecipe.html"><button class="individualRecipeBtn"> <h4>Get Recipe</h4> </button></a>
+                        </figcaption>
+                    </figure>
+                </template>
             </div><!--breakfastRecipes close-->
+            <h1>Entrées:</h1>
             <div id="entreeRecipes">
-                <h1>Entrées:</h1>
-                    <template id="eFigureTemplate">
-                        <figure id="entreeRecipe1">
-                            <img src="images/entrees/" alt="recipe image">
-                            <figcaption>
-                                <h2>Recipe Name</h2>
-                                <p>Description</p>
-                            </figcaption>
-                        </figure>
-                    </template>
+                <template id="eFigureTemplate">
+                    <figure id="entreeRecipe1">
+                        <img src="images/entrees/" alt="recipe image">
+                        <figcaption>
+                            <h2>Recipe Name</h2>
+                            <p>Description</p>
+                            <a href="individualRecipe.html"><button class="individualRecipeBtn"> <h4>Get Recipe</h4> </button></a>
+                        </figcaption>
+                    </figure>
+                </template>
             </div><!--entreeRecipes close-->
+            <h1>Dessert:</h1>
             <div id="dessertRecipes">
-                <h1>Dessert:</h1>
-                    <template id="dFigureTemplate">
-                        <figure id="dessertRecipe1">
-                            <img src="images/desserts/" alt="recipe image">
-                            <figcaption>
-                                <h2>Recipe Name</h2>
-                                <p>Description</p>
-                            </figcaption>
-                        </figure>
-                    </template>
+                <template id="dFigureTemplate">
+                    <figure id="dessertRecipe1">
+                        <img src="images/desserts/" alt="recipe image">
+                        <figcaption>
+                            <h2>Recipe Name</h2>
+                            <p>Description</p>
+                            <a href="individualRecipe.html"><button class="individualRecipeBtn"> <h4>Get Recipe</h4> </button></a>
+                        </figcaption>
+                    </figure>
+                </template>
             </div><!--dessertRecipes close-->
         </main>
         <footer>
