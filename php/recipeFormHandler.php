@@ -50,7 +50,7 @@
         }
     }
 
-    $hostImageFolder = "../images/uploadedImages/";
+    $hostImageFolder = "images/uploadedImages/";
     basename($_FILES["inRecipeImage"]["name"]);
 
     $hostImagePath = $hostImageFolder . basename($_FILES["inRecipeImage"]["name"]);
