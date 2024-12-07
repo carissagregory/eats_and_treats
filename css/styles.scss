@@ -352,7 +352,7 @@ main {
     div, h1, p, button {
         padding: 10px
     }
-    #submitRecipeConfirmation {
+    #submitRecipeConfirmation, #submitContactConfirmation {
        @include confirmationMessageStyles;
        margin-top: 10px;
        p {
@@ -396,31 +396,56 @@ main {
     h1 {
         text-align: center;
     }
-    .recipes {
-        ul {
-            margin-left: 10px;
-            padding-left: 10px;
-            li {
-                list-style-type: circle;
+  
+    .recipes {   
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        div[id^="singleRecipe"]{
+            background-color: $primaryColor;
+            margin: 10px;
+            h2 {
+                text-align: center;
             }
-        }
-        ol {
-            margin-left: 10px;
-            padding-left: 10px;
-            li {
-                font-size: small;
+            h3, p {
+                margin: 0 5px;
             }
-        }
-        button {
-            @include buttonStyles;
-            a {
-                text-decoration: none;
+            img {
+                width: 50%;
+                text-align: center;
             }
-        }
-        button:hover {
-            @include buttonHoverStyles;
-        }
+            ol, ul {
+                margin: 10px;
+                padding: 10px;
+            }
+            ul {
+                li {
+                    list-style-type: circle;
+                }
+            }
+            p:nth-child(8) {
+                text-align: center;
+                margin-bottom: 5px
+            }
+            button {
+                @include buttonStyles;
+                a {
+                    text-decoration: none;
+                }
+            }
+            button:hover {
+                @include buttonHoverStyles;
+            }   
+            #recipeButtons {
+                text-align: center;
+                button {
+                    margin: 10px;
+                }
+            }         
+        }         
+
     }
+
 }
 
 footer {
@@ -440,5 +465,21 @@ footer {
     }
     p {
         color: $tertiaryColor;
+    }
+}
+
+@media (max-width: 600px) {
+    #displayRecipes {
+
+        .recipes {   
+            grid-template-columns: 1fr;
+            //gap: 20px;
+            justify-content: center;
+            padding-left: 0px;
+            div[id^="singleRecipe"]{
+                margin: 0px;
+            }
+        }
+    
     }
 }
