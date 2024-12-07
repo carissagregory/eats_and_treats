@@ -1,4 +1,9 @@
 <?php
+    session_start();
+
+    if ($_SESSION['logInSession'] !== "yes") {
+        header("Location: login.php");
+    }  
 //connect to database
 //get values from database
 //display formatted values for each recipe
@@ -42,8 +47,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--external js file-->
-    <script defer src="js/eatsAndTreatsJS.js"></script>
+
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <!--regular text font-->
@@ -79,52 +83,50 @@
                 -->
                 <h1>All Recipes</h1>
                 <?php
-                while($eventRow = $stmt->fetch()){
-                    echo "<div class='recipes'>";
-                    echo "<h2> Recipe " . $eventRow["recipeId"] . "</h2>";
-                    echo "<h3> Name: </h3>";
-                    echo "<p>" . $eventRow["recipeName"] . "</p>";
-                    echo "<p>" . $eventRow["recipeAuthor"] . "</p>";
-                    echo "<p>" . $eventRow["recipeNumServings"] . " " . $eventRow["recipeServingKind"] . "</p>";
-                    echo "<p>" . $eventRow["recipeCookingTime"] . " minutes</p>";
-                    echo "<p>" . $eventRow["recipeDifficulty"] . "</p>";
-                    echo "<p>" . $eventRow["recipeCategory"] . "</p>";
-                    echo "<p>" . $eventRow["recipeDescription"] . "</p>";
+                echo "<div class='recipes'>";
+                while($recipeRow = $stmt->fetch()){
+                    echo "<div id='singleRecipe" . $recipeRow["recipeId"] . "'>";
+                    echo "<h2> Recipe " . $recipeRow["recipeId"] . "</h2>";
+                    echo "<p>" . $recipeRow["recipeName"] . "</p>";
+                    echo "<p>" . $recipeRow["recipeAuthor"] . "</p>";
+                    echo "<p>" . $recipeRow["recipeNumServings"] . " " . $recipeRow["recipeServingKind"] . "</p>";
+                    echo "<p>" . $recipeRow["recipeCookingTime"] . " minutes</p>";
+                    echo "<p>" . $recipeRow["recipeDifficulty"] . "</p>";
+                    echo "<p>" . $recipeRow["recipeCategory"] . "</p>";
+                    echo "<p>" . $recipeRow["recipeDescription"] . "</p>";
 
-                    $measurements = json_decode($eventRow["recipeMeasurements"]);
+                    $measurements = json_decode($recipeRow["recipeMeasurements"]);
+                    $volumes = json_decode($recipeRow["recipeVolumes"]);
+                    $types = json_decode($recipeRow["recipeTypes"]);
+
+                    echo "<h3>Ingredients: </h3>";
                     echo "<ul>";
-                    foreach($measurements as $measurement) {
-                        echo "<li>" . htmlspecialchars($measurement) . "</li>";
+                    for ($x = 0; $x < count($measurements); $x++) {
+                        echo "<li>";
+                        echo htmlspecialchars($measurements[$x]) . " " .
+                             htmlspecialchars($volumes[$x]) . " " .
+                             htmlspecialchars($types[$x]);
+                        echo "</li>";
                     }
                     echo "</ul>";
 
-                    $volumes = json_decode($eventRow["recipeVolumes"]);
-                    echo "<ul>";
-                    foreach($volumes as $volume) {
-                        echo "<li>" . htmlspecialchars($volume) . "</li>";
-                    }
-                    echo "</ul>";
-
-                    $types = json_decode($eventRow["recipeTypes"]);
-                    echo "<ul>";
-                    foreach($types as $type) {
-                        echo "<li>" . htmlspecialchars($type) . "</li>";
-                    }
-                    echo "</ul>";
-
-                    $directions = json_decode($eventRow["recipeDirections"]);
+                    $directions = json_decode($recipeRow["recipeDirections"]);
+                    echo "<h3>Directions: </h3>";
                     echo "<ol>";
                     foreach($directions as $direction) {
                         echo "<li>" . htmlspecialchars($direction) . "</li>";
                     }
                     echo "</ol>";
 
-                    echo "<p>" . $eventRow["recipeImageName"] . "</p>";
-                    echo "<p>" . $eventRow["recipeImage"] . "</p>";
-                    echo "<button> <a href='updateEvent.php?eventsID=" . $eventRow["events_id"] . "'> <h4> Update </h4> </a> </button>";
-                    echo "<button onclick='confirmDelete(" . $eventRow['events_id'] . ")'> <h4> Delete </h4> </button>";
-                    echo "</div>";
+                    echo "<img src='". $recipeRow["recipeImage"] ."' alt='" . $recipeRow["recipeImageName"] . " Image'>";
+                    echo "<p id='recipeButtons'>";
+                    echo "<button> <a href='updateEvent.php?eventsID=" . $recipeRow["events_id"] . "'> <h4> Update </h4> </a> </button>";
+                    echo "<button onclick='confirmDelete(" . $recipeRow['events_id'] . ")'> <h4> Delete </h4> </button>";
+                    echo "</p><!--recipeButton close-->";
+
+                    echo "</div><!--singleRecipe close-->";
                 }
+                echo "</div><!--recipes close-->";
             ?>
     </main>
     <footer>
