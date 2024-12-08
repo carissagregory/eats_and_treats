@@ -181,14 +181,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Recipe Confirmation</title>
 </head>
-<body class="confirmationContainer">
-    <div id="submitRecipeConfirmation">
-        <h1>Thank you for submitting a recipe!</h1>
-        <p>
-            Your recipe should appear on the site shortly. 
-            If your recipe has not shown up within 24 hours please let us know by submitting our contact form.
-        </p>
-        <a href="../index.html"><button><h4>Home Page</h4></button></a>
-    </div>
+    <body class="container">
+    <div class="navigationBar">
+        <img src="../images/eatsAndTreatsLogo.png" alt="eats and treats logo">
+    </div><!--navigationBar--> 
+    <main class="confirmationContainer">
+        <div id="submitRecipeConfirmation">
+            <h1>Thank you for submitting a recipe!</h1>
+            <p>
+                Your recipe should appear on the site shortly. 
+                If your recipe has not shown up within 24 hours please let us know by submitting our contact form.
+            </p>
+            <a href="../index.html"><button><h4>Home Page</h4></button></a>
+        </div>
+    </main>
+    <footer>
+        <p>Eats and Treats Copyright &copy <?php echo date("Y");?> </p>        
+    </footer>
 </body>
 </html>
