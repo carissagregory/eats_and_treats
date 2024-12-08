@@ -47,7 +47,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <!--external js file-->
+    <script defer src="js/displayRecipes.js"></script>
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <!--regular text font-->
@@ -120,8 +121,8 @@
 
                     echo "<img src='". $recipeRow["recipeImage"] ."' alt='" . $recipeRow["recipeImageName"] . " Image'>";
                     echo "<p id='recipeButtons'>";
-                    echo "<button> <a href='updateEvent.php?eventsID=" . $recipeRow["events_id"] . "'> <h4> Update </h4> </a> </button>";
-                    echo "<button onclick='confirmDelete(" . $recipeRow['events_id'] . ")'> <h4> Delete </h4> </button>";
+                    echo "<button> <a href='updateEvent.php?eventsID=" . $recipeRow["recipeId"] . "'> <h4> Update </h4> </a> </button>";
+                    echo "<button onclick='deleteRecipeConfirmation(" . $recipeRow['recipeId'] . ")'> <h4> Delete </h4> </button>";
                     echo "</p><!--recipeButton close-->";
 
                     echo "</div><!--singleRecipe close-->";
@@ -136,7 +137,7 @@
                 <li><a href="logout.php"><button class="logoutButton"><h4>Log Out</h4></button></a></li>
             </ul>    
         </div><!--footerNav-->    
-            <p>Eats and Treats Copyright &copy <?php echo date("Y");?></p>        
+            <p>Eats and Treats Copyright &copy <?php echo date("Y");?></p>
     </footer>
 </body>
 </html>
