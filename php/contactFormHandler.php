@@ -48,22 +48,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--external js files-->
+    <script defer src="js/eatsAndTreatsJS.js"></script>
+    <!--headings font-->
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <!--regular text font-->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!--css-->
+    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+    <!--logo-->
+    <link rel="icon" href="images/eatsAndTreatsLogo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Handler</title>
-    <style>
-        body {
-            background-color: #bbe4ff;
-        }
-        h2, p {
-            text-align: center;
-        }
-    </style>
+    <meta name="keywords" content="">
+    <meta name="descripton" content="Contact Form Confirmation ">    
+    <title>Contact Confirmation</title>
 </head>
-<body>
-    <h2>Thank you for contacting me!</h2>
-    <p>
-        Please check you email for a confirmation of the contact form you submitted. Once I recieve the email I will get back to you. 
-    </p>
+<body class="container">
+    <div class="navigationBar">
+        <img src="../images/eatsAndTreatsLogo.png" alt="eats and treats logo">
+    </div><!--navigationBar--> 
+    <main class="confirmationContainer">
+        <div id="submitContactConfirmation">
+            <h1>Thank you for contacting the Eats and Treats Team!</h1>
+            <p>
+                Please check you email for a confirmation of the contact form you submitted. Once our team recieves your email they will get back to you shortly. 
+            </p>
+            <a href="../index.html"><button><h4>Home Page</h4></button></a>
+        </div>
+    </main>
+    <footer>
+        <p>Eats and Treats Copyright &copy <?php echo date("Y");?> </p>        
+    </footer>
 </body>
 </html>
