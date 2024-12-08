@@ -175,7 +175,6 @@ $bodyFont: "Quicksand", sans-serif;
     
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -365,6 +364,10 @@ main {
     padding-top: 15px;
     form	{
         @include formStyles;
+        span[id$="Error"] {
+            color: $errorMessageColor;
+            font-style: italic;
+        }
     }
 }
 
@@ -446,6 +449,24 @@ main {
 
     }
 
+}
+
+#errorMessage {
+    div {
+        background-color: $primaryColor;
+        padding: 15px;
+        margin: 10px;
+        text-align: center;     
+        h2 {
+            margin: 10px;
+        }
+        button {
+            @include buttonStyles;
+        }
+        button:hover {
+            @include buttonHoverStyles;
+        }           
+    }    
 }
 
 footer {
