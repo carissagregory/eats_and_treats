@@ -3,6 +3,7 @@
 <head>
     <!--external js file-->
     <script defer src="js/eatsAndTreatsJS.js"></script>
+    <script defer src="js/contactForm.js"></script>
     <!--external php file-->
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
@@ -34,37 +35,47 @@
             </nav>
         </div><!--navigationBar-->  
         <main id="contactPage">
-            <form id="contactForm" name="contactForm" method="post" action="contactFormHandler.php">
+            <form id="contactForm" name="contactForm" method="post" action="php/contactFormHandler.php">
                 <legend>Contact the Eats and Treats Team</legend>
                 <p>
                     <label for="firstName">First Name:</label> 
                     <br>
-                    <input type="text" name="firstName" id="firstName" required>
+                    <input type="text" name="firstName" id="firstName">
+                    <br>
+                    <span id="firstNameError"></span>
                 </p>
                 <p>
                     <label for="lastName">Last Name:</label> 
                     <br>
-                    <input type="text" name="lastName" id="lastName" required>
+                    <input type="text" name="lastName" id="lastName">
+                    <br>
+                    <span id="lastNameError"></span>
                 </p>
                 <p>
                     <label for="email">Email:</label> 
                     <br>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email">
+                    <br>
+                    <span id="emailError"></span>
                 </p>
                 <p>
                     <label for="contactReason">Reason for Contacting:</label>
                     <br>
-                    <input type="text" name="contactReason" id="contactReason" required>
+                    <input type="text" name="contactReason" id="contactReason">
+                    <br>
+                    <span id="contactReasonError"></span>
                 </p>
                 <p>
                     <label for="message">Message:</label>
                     <br>
-                    <textarea id="message" name="message" rows="5" cols="50" required> 
+                    <textarea id="message" name="message" rows="5" cols="50"> 
                 
                     </textarea>
+                    <br>
+                    <span id="messageError"></span>
                 </p>
                 <p>
-                    <input type="submit" name="submit" id="submit" value="Submit">
+                    <input type="button" name="submitForm" id="submitForm" value="Submit" onclick="validateFormFields()">
                     <input type="reset" name="reset" id="reset" value="Reset">
                 </p>
             </form>
