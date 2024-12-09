@@ -3,6 +3,7 @@
 <head>
     <!--external js file-->
     <script defer src="js/eatsAndTreatsJS.js"></script>
+    <script defer src="js/recipeForm.js"></script>
     <!--external php file-->
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
@@ -33,17 +34,21 @@
             </nav>
         </div><!--navigationBar-->  
         <main id="submitRecipePage">
-            <form id="submitRecipeForm" name="submitRecipeForm" method="post" action="php/recipeFormHandler.php" enctype="multipart/form-data">
+            <form id="submitRecipeForm" name="submitRecipeForm" method="post" action="recipeFormHandler.php" enctype="multipart/form-data">
                 <legend>Upload a Recipe</legend>
                 <p>
                     <label for="recipeName">Recipe Name:</label> 
                     <br>
                     <input type="text" name="recipeName" id="recipeName" placeholder="Chocolate Chip Cookies">
+                    <br>
+                    <span id="nameError"></span>  
                 </p><!--recipeName close-->
                 <p>
                     <label for="recipeAuthor">Recipe Author:</label> 
                     <br>
                     <input type="text" name="recipeAuthor" id="recipeAuthor" placeholder="Eats and Treats">
+                    <br>
+                    <span id="authorError"></span>  
                 </p><!--recipeAuthor close-->
                 <p>
                     <label for="recipeNumServings">Number of Servings:</label>
@@ -52,11 +57,17 @@
                     <input type="number" name="recipeNumServings" id="recipeNumServings" placeholder="3, 24">
                     <!--Could do dropdown for serving type(servings, cookies, cupcakes, cakes)-->
                     <input type="text" name="recipeServingKind" id="recipeServingKind" placeholder="People, Cookies">
+                    <br>
+                    <span id="numServingsError"></span>  
+                    <br>
+                    <span id="servingKindError"></span>  
                 </p><!--recipeServings close-->
                 <p>
                     <label for="recipeCookingTime">Cooking Time(in minutes):</label>
                     <br>
                     <input type="number" name="recipeCookingTime" id="recipeCookingTime" placeholder="30, 90">
+                    <br>
+                    <span id="cookingTimeError"></span>  
                 </p><!--recipeCookingTime close-->         
                 <p>
                     <label for="recipeDifficultyLevel">Difficulty:</label>
@@ -67,6 +78,8 @@
                         <option value="moderate">Moderate</option>
                         <option value="hard">Hard</option>
                     </select>  
+                    <br>
+                    <span id="difficultyError"></span>  
                 </p><!--recipeDifficultyLevel close-->       
                 <h4>Recipe Category:</h4>
                 <p>
@@ -76,11 +89,15 @@
                     <input type="radio" name="recipeCategory" id="entreeCategory" value="entree">
                     <label for="dessertCategory">Dessert</label> 
                     <input type="radio" name="recipeCategory" id="dessertCategory" value="dessert">
+                    <br>
+                    <span id="categoryError"></span>  
                 </p><!--recipeCategory close-->
                 <p>
                     <label for="recipeDescription">Recipe Description:</label>
                     <br>
                     <input type="text" name="recipeDescription" id="recipeDescription" placeholder="1-2 sentence description of the recipe">
+                    <br>
+                    <span id="descriptionError"></span>  
                 </p><!--recipeDescription close-->
                 <section id="ingredientsFields">
                     <h4>Ingredients:</h4>
@@ -145,6 +162,8 @@
                     </template>
                 </section><!--ingredientFields close-->
                 <p>
+                    <span id="ingredientError"></span>
+                    <br>
                     <input type="button" name="addIngredientButton" id="addIngredientButton" value="Add Ingredient Field" onclick="addIngredientFields()">
                 </p><!--addIngredientButton close-->
                 <section id="directionsFields">
@@ -160,11 +179,13 @@
                             <label for="direction1">1.</label>
                             <textarea name="direction1" id="direction1" rows="2" cols="50">
         
-                            </textarea>
+                            </textarea>                         
                         </p>
                     </template>
                 </section><!--directionFields close-->
                 <p>
+                    <span id="directionError"></span> 
+                    <br>
                     <input type="button" name="addDirectionButton" id="addDirectionButton" value="Add Direction Field" onclick="addDirectionField()">
                 </p><!--addDirectionButton close-->
                 <p>
@@ -172,14 +193,18 @@
                     <br>
                     <input type="text" name="inRecipeImageName" id="inRecipeImageName" placeholder="recipe image name">
                     <br>
+                    <span id="imageNameError"></span>  
+                    <br>
                     <label for="inRecipeImage">Select Your Recipe Image: </label>
                     <br>
                     <input type="file" name="inRecipeImage" id="inRecipeImage" accept=".jpg,.gif,.png,.svg">
+                    <br>
+                    <span id="imageError"></span>  
                 </p><!--uploadRecipeImage close-->
                 <p>
                     <input type="button" name="submitRecipe" id="submitRecipe" value="Submit" onclick="validateRecipeFormFields()">
                     <input type="reset" name="reset" id="reset" value="Reset">
-                </p>
+                </p><!--form buttons close-->
             </form>
         </main>
         <footer>
