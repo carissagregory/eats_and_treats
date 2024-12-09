@@ -56,7 +56,5 @@ function validateFormFields() {
     if (validForm) {
         //alert("Fields are valid!");
         contactForm.submit();
-
-
     }
 }
