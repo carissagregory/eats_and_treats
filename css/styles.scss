@@ -341,6 +341,10 @@ main {
     padding-top: 15px;
     form {
         @include formStyles;
+        span[id$="Error"] {
+            color: $errorMessageColor;
+            font-style: italic;
+        } 
     }
 }
 
@@ -492,7 +496,6 @@ footer {
 
 @media (max-width: 600px) {
     #displayRecipes {
-
         .recipes {   
             grid-template-columns: 1fr;
             //gap: 20px;
