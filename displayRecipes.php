@@ -48,7 +48,7 @@
 <html lang="en">
 <head>
     <!--external js file-->
-    <script defer src="js/displayRecipes.js"></script>
+    <script defer src="js/deleteRecipe.js"></script>
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <!--regular text font-->
@@ -88,19 +88,20 @@
                 while($recipeRow = $stmt->fetch()){
                     echo "<div id='singleRecipe" . $recipeRow["recipeId"] . "'>";
                     echo "<h2> Recipe " . $recipeRow["recipeId"] . "</h2>";
-                    echo "<p>" . $recipeRow["recipeName"] . "</p>";
-                    echo "<p>" . $recipeRow["recipeAuthor"] . "</p>";
-                    echo "<p>" . $recipeRow["recipeNumServings"] . " " . $recipeRow["recipeServingKind"] . "</p>";
-                    echo "<p>" . $recipeRow["recipeCookingTime"] . " minutes</p>";
-                    echo "<p>" . $recipeRow["recipeDifficulty"] . "</p>";
-                    echo "<p>" . $recipeRow["recipeCategory"] . "</p>";
+                    echo "<h3>" . $recipeRow["recipeName"] . "</h3>";
+                    echo "<h3>" . $recipeRow["recipeAuthor"] . "</h3>";
+                    echo "<h3>" . $recipeRow["recipeNumServings"] . " " . $recipeRow["recipeServingKind"] . "</h3>";
+                    echo "<h3>" . $recipeRow["recipeCookingTime"] . " minutes</h3>";
+                    echo "<h3>" . $recipeRow["recipeDifficulty"] . "</h3>";
+                    echo "<h3>" . $recipeRow["recipeCategory"] . "</h3>";
+                    echo "<p> <img src='". $recipeRow["recipeImage"] ."' alt='" . $recipeRow["recipeImageName"] . " Image' class='recipeImage'> </p>";                    
                     echo "<p>" . $recipeRow["recipeDescription"] . "</p>";
 
                     $measurements = json_decode($recipeRow["recipeMeasurements"]);
                     $volumes = json_decode($recipeRow["recipeVolumes"]);
                     $types = json_decode($recipeRow["recipeTypes"]);
 
-                    echo "<h3>Ingredients: </h3>";
+                    echo "<h2>Ingredients: </h2>";
                     echo "<ul>";
                     for ($x = 0; $x < count($measurements); $x++) {
                         echo "<li>";
@@ -112,14 +113,13 @@
                     echo "</ul>";
 
                     $directions = json_decode($recipeRow["recipeDirections"]);
-                    echo "<h3>Directions: </h3>";
+                    echo "<h2>Directions: </h2>";
                     echo "<ol>";
                     foreach($directions as $direction) {
                         echo "<li>" . htmlspecialchars($direction) . "</li>";
                     }
                     echo "</ol>";
 
-                    echo "<img src='". $recipeRow["recipeImage"] ."' alt='" . $recipeRow["recipeImageName"] . " Image'>";
                     echo "<p id='recipeButtons'>";
                     echo "<button> <a href='updateEvent.php?eventsID=" . $recipeRow["recipeId"] . "'> <h4> Update </h4> </a> </button>";
                     echo "<button onclick='deleteRecipeConfirmation(" . $recipeRow['recipeId'] . ")'> <h4> Delete </h4> </button>";
