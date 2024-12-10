@@ -67,6 +67,7 @@ $bodyFont: "Quicksand", sans-serif;
         text-align: center;
         width: 50%;
         height: 70%;
+        border-radius: 20px;
         h2 {
             padding: 25px;
         }
@@ -82,6 +83,18 @@ $bodyFont: "Quicksand", sans-serif;
     } 
 }
 
+@mixin mobileFigureStyle {
+    figure {
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 80%;
+        height: auto;
+        h2 {
+            padding: 10px;
+        }
+    } 
+}
+
 @mixin recipeFigureStyles {
     figure {
         margin-bottom: 15px;
@@ -90,10 +103,12 @@ $bodyFont: "Quicksand", sans-serif;
         text-align: center;
         max-width: 100%;
         height: auto;
+        border-radius: 20px;
         img {
             max-width: 100%;
             height: auto;
             object-fit: cover;
+            border-radius: 20px;
         }
         figcaption {
             padding: 5px;
@@ -134,7 +149,7 @@ $bodyFont: "Quicksand", sans-serif;
     }
 
     [type="number"] {
-        width: 6%;
+        width: 10%;
         //border-radius: 20px;
     }
 
@@ -157,6 +172,25 @@ $bodyFont: "Quicksand", sans-serif;
         @include buttonHoverStyles;
         font-family: $headingFont;
         color: black;
+    }
+}
+
+@mixin mobileFormStyles {
+    width: 90%;
+    legend {
+        font-size:24px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    [type="text"], [type="email"], select, [type="password"]{
+        width: 70%;
+    }
+
+    textarea, #recipeDescription {
+        width: 80%;
     }
 }
 
@@ -238,7 +272,8 @@ main {
     gap: 20px;
     justify-items: center;
 
-    #featuredRecipe {      
+    #featuredRecipe {    
+        background-color: $primaryColor;  
         display: contents;
         #featuredRecipeImg {
             grid-area: featuredImg;
@@ -252,8 +287,7 @@ main {
             grid-area: featuredDesc;
             justify-self: start;
             text-align: center; 
-            padding-right: 20px;
-            //background-color: $primaryColor;   
+            padding-right: 20px; 
             h2, p, button {
                 padding: 30px;
             }
@@ -300,39 +334,66 @@ main {
         background-color: $primaryColor;
         width: 80%;
         margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
         button {
             @include buttonStyles;
         }
         button:hover {
             @include buttonHoverStyles;
         }
+        h1{
+            text-align: center;
+        }        
+        #recipeInformation {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+            #recipeHeadings {
+                h3, button{
+                    margin: 10px;
+                }
+            }
+            #recipeImage {
+                max-width: 300px;
+                height: auto;
+                border-radius: 20px;
+                object-fit: cover;
+                margin-top: 25px;
+                margin-right: 10px;
+            }
+        }
+        #recipeDescription {
+            text-align: center;
+            font-size: large;
+        }
 
         #ingredients, #directions {
+            text-align: center;
             .ingredientsAccordion, .directionsAccordion {
                 background-color: $primaryColor;
-                color: #000000;
-                cursor: pointer;
-                padding: 18px;
-                width: 100%;
-                text-align: center;
+                margin: 0 18px;
+                cursor: pointer;                
                 font-size: 18px;
                 border: none;
                 outline: none;
                 transition: 0.4s;
-
-                .ingredientsAccordion:hover, .directionsAccordion:hover {
-                    background-color: $primaryAccentColor;
-                }
+                @include buttonStyles;
+                margin: 5px;
             }
-
             .ingredientsPanel, .directionsPanel {
-                padding: 0 18px;
+                padding: 20px;
                 background-color: $secondaryAccentColor;
-                font-size: 18px;
+                color: $tertiaryColor;
+                font-size: large;
                 display: none;
                 overflow: hidden;
+                text-align: left;
+                margin: 10px;
+                border-radius: 20px;
             }
-
         }
     }
 }
@@ -411,14 +472,20 @@ main {
         div[id^="singleRecipe"]{
             background-color: $primaryColor;
             margin: 10px;
+            border-radius: 20px;
             h2 {
                 text-align: center;
             }
             h3, p {
                 margin: 0 5px;
             }
-            img {
+            .recipeImage {
                 width: 50%;
+                text-align: center;
+                border-radius: 20px;
+                //margin: 0 auto;
+            }
+            p:nth-child(10) {
                 text-align: center;
             }
             ol, ul {
@@ -428,6 +495,13 @@ main {
             ul {
                 li {
                     list-style-type: circle;
+                }
+            }
+            ol {
+                li{
+                    &::marker {
+                        font-weight: 600;
+                    }
                 }
             }
             p:nth-child(8) {
@@ -493,18 +567,83 @@ footer {
     }
 }
 
-
 @media (max-width: 600px) {
+    #homePage {
+        grid-template-areas: 
+            'featuredImg'
+            'featuredDesc'
+            'callout1'
+            'callout2';
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    
+        #featuredRecipe {     
+            #featuredRecipeImg {
+                img {
+                    width: 100%;
+                }
+            }
+            #featuredRecipeDesc {
+                padding-right: 0;   
+            }        
+        }
+        #pageCallouts figure{
+            width: 80%;
+            height: auto;
+        }
+    }
+
+    #recipeGalleryPage {
+        #breakfastRecipes, #entreeRecipes, #dessertRecipes{
+            padding-left: 0;
+        }
+    }
+
+    #individualRecipePage {
+        #recipeContainer {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 0;     
+            #recipeInformation {
+                grid-template-columns: 1fr;
+                #recipeImage {
+                    margin: 0 auto;
+                }
+            }
+
+        }
+    }    
+
+    #submitRecipePage, #contactPage, #loginForm, #addRecipePage {
+        padding-top: 10px;
+        form {
+            @include mobileFormStyles;
+        }
+    }
+
+    #adminFeatures {
+        padding-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        @include mobileFigureStyle;
+        figure {
+            height: 50%;
+        } 
+    }
+
     #displayRecipes {
         .recipes {   
             grid-template-columns: 1fr;
-            //gap: 20px;
             justify-content: center;
             padding-left: 0px;
             div[id^="singleRecipe"]{
                 margin: 0px;
             }
+            .recipeImage {
+                margin: 0 auto;
+            }
         }
-    
-    }
+    }    
+
 }
