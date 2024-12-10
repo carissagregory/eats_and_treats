@@ -35,21 +35,23 @@
         <main id="individualRecipePage">
             <div id="recipeContainer">
                 <template>
+                    <h1 id="recipeName">Recipe Name</h1>
                     <div id="recipeInformation">
-                        <h1>Recipe Name</h1>   
-                        <h3>Author</h3>
-                        <h3> <section id="servingNumber"></section> <section id="servingKind"></section> </h3>
-                        <h3>Cooking Time</h3>
-                        <h3>Difficulty</h3>
-                        <h3>Recipe Category</h3>
-                        <img src="" alt="">
-                        <div id="servingButtons">
-                            <button id="halfServing" onclick="halfServing()"> <h4></h4> </button>
-                            <button id="defaultServing" onclick="defaultServing()"> <h4></h4> </button>
-                            <button id="doubleServing" onclick="doubleServing()"> <h4></h4> </button>
-                        </div><!--servingsButtons close-->
-                        <p>Description</p>
-                    </div><!--recipeInformation close-->
+                        <div id="recipeHeadings">
+                            <h3>Author</h3>
+                            <h3> <span id="servingNumber"></span> <span id="servingKind"></span> </h3>
+                            <h3>Cooking Time</h3>
+                            <h3>Difficulty</h3>
+                            <h3>Recipe Category</h3>
+                            <div id="servingButtons">
+                                <button id="halfServing" onclick="halfServings()"> <h4></h4> </button>
+                                <button id="defaultServing" onclick="defaultServing()"> <h4></h4> </button>
+                                <button id="doubleServing" onclick="doubleServing()"> <h4></h4> </button>
+                            </div><!--servingsButtons close--> 
+                        </div>
+                            <img src="" alt="" id="recipeImage">   
+                    </div><!--recipeInformation close-->           
+                    <p id="recipeDescription">Description</p>
                     <div id="ingredients">
                         <button class="ingredientsAccordion"></button>
                         <div class="ingredientsPanel">
@@ -66,6 +68,7 @@
                             </ol>
                         </div>
                     </div><!--directions close-->
+                    <br>
                 </template>                
             </div>
         </main>
