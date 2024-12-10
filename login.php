@@ -70,7 +70,7 @@
 <html lang="en">
 <head>
     <!--external js file-->
-    <script defer src="js/eatsAndTreatsJS.js"></script>
+
     <!--headings font-->
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <!--regular text font-->
@@ -101,13 +101,13 @@
         <figure id="addRecipe">
             <h2>Add a Recipe</h2>
             <figcaption>
-                <a href="addRecipe.php" target="_blank"><button><h4>Add a Recipe</h4></button></a>
+                <a href="addRecipe.php"><button><h4>Add a Recipe</h4></button></a>
             </figcaption>
         </figure>
         <figure id="deleteRecipe">
             <h2>Delete a Recipe</h2>
             <figcaption>
-                <a href="displayRecipes.php" target="_blank"><button><h4>Display Recipes</h4></button></a>
+                <a href="displayRecipes.php"><button><h4>Display Recipes</h4></button></a>
             </figcaption>
         </figure>
     </main>
