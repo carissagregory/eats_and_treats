@@ -247,11 +247,10 @@ p, ul li, ol li {
         grid-area: img;
         padding: 15px;
     }
-        .mobileNavBtn {
+    .mobileNavBtn {
             display: none;
         }    
     nav {
-
         grid-area: nav;
         text-align: center;
         @include navStyles;
