@@ -162,6 +162,11 @@ $bodyFont: "Quicksand", sans-serif;
         margin: 10px;
     }    
 
+    label, input, select {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
     [type="submit"], [type="reset"], [type="button"], input::file-selector-button{
         @include buttonStyles;
         font-family: $headingFont;
@@ -398,7 +403,7 @@ main {
     }
 }
 
-#submitRecipePage, #addRecipePage {
+#submitRecipePage, #addRecipePage, #updateRecipePage {
     padding-top: 15px;
     form {
         @include formStyles;
@@ -406,6 +411,12 @@ main {
             color: $errorMessageColor;
             font-style: italic;
         } 
+        label[for$="Servings"] {
+            margin-right: 30px;
+        }
+        label[for$="Measurement"] {
+            margin-right: 50px;
+        }
     }
 }
 
@@ -416,7 +427,7 @@ main {
     div, h1, p, button {
         padding: 10px
     }
-    #submitRecipeConfirmation, #submitContactConfirmation {
+    #submitRecipeConfirmation, #submitContactConfirmation, #updateRecipeConfirmation {
        @include confirmationMessageStyles;
        margin-top: 10px;
        p {
@@ -452,10 +463,9 @@ main {
     padding-top: 15px;
     form {
         @include formStyles;
-        #errorMessage {
-            padding: 55px 0;
-            font-style: italic;
+        span[id$="Error"], #errorMessage {
             color: $errorMessageColor;
+            font-style: italic;
         }
     }
 }
@@ -615,10 +625,16 @@ footer {
         }
     }    
 
-    #submitRecipePage, #contactPage, #loginForm, #addRecipePage {
+    #submitRecipePage, #contactPage, #loginForm, #addRecipePage, #updateRecipePage {
         padding-top: 10px;
         form {
             @include mobileFormStyles;
+            label[for$="Servings"] {
+                margin-right: 10px;
+            }
+            label[for$="Measurement"] {
+                margin-right: 30px;
+            }
         }
     }
 
