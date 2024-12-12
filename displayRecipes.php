@@ -121,7 +121,7 @@
                     echo "</ol>";
 
                     echo "<p id='recipeButtons'>";
-                    echo "<button> <a href='updateEvent.php?eventsID=" . $recipeRow["recipeId"] . "'> <h4> Update </h4> </a> </button>";
+                    echo "<button> <a href='updateRecipe.php?recipeId=" . $recipeRow["recipeId"] . "'> <h4> Update </h4> </a> </button>";
                     echo "<button onclick='deleteRecipeConfirmation(" . $recipeRow['recipeId'] . ")'> <h4> Delete </h4> </button>";
                     echo "</p><!--recipeButton close-->";
 
