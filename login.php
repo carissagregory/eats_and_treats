@@ -52,13 +52,14 @@
                     //invalid
                     $validLogIn = false;
                     $errorMessage = "<p id='errorMessage'>Invalid username/password, please try again.</p>";
-                    $_SESSION['LogInSession'] = "no";       //invalid log in - do NOT allow access
+                    $_SESSION['logInSession'] = "no";       //invalid log in - do NOT allow access
                 }
                 
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);       //return values as an associative array
             }
             catch(PDOException $e) {
-                echo "Database Failed: " . $e->getMessage();
+                //echo "Database Failed: " . $e->getMessage();
+                header("Location: errorMessage.html");
             }
         }
         else {
@@ -141,13 +142,13 @@
         <!--this section will display when the user asks to login to the application-->
         <form id="loginForm" name="loginForm" method="post" action="login.php">
             <legend>Log In</legend>
-            <div class="errorMessageFormat">
+            <p class="errorMessageFormat">
                 <?php
                     if (isset($errorMessage)) {
                         echo $errorMessage;
                     }
                 ?>
-            </div>
+            </p>
             <p>
                 <label for="inUsername">Username: </label>
                 <br>
