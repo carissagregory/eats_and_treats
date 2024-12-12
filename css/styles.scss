@@ -22,21 +22,21 @@ $bodyFont: "Quicksand", sans-serif;
 @mixin navStyles {
     ul {
         padding: 10px;
+        li {
+            display: inline;
+            padding: 10px;  
+            a {
+                color: #ffffff;
+                font-family: $headingFont;                
+            }     
+            a:link {
+                text-decoration: none;    
+            }     
+            a:hover {
+               color: $tertiaryColor; 
+            }
+        }
     }
-    ul li {
-        display: inline;
-        padding: 10px;
-    }
-    ul li a {
-        color: #ffffff;
-        font-family: $headingFont;
-    } 
-    ul li a:link {
-        text-decoration: none;
-    }
-    ul li a:hover {
-        color: $tertiaryColor;
-    } 
 }
 
 @mixin buttonStyles {
@@ -248,6 +248,9 @@ p, ul li, ol li {
         padding: 15px;
     }
     nav {
+        .mobileNavBtn {
+            display: none;
+        }
         grid-area: nav;
         text-align: center;
         @include navStyles;
@@ -578,6 +581,33 @@ footer {
 }
 
 @media (max-width: 600px) {
+    .navigationBar {
+        grid-template-areas:
+            "img navBtn"
+            "img nav";
+        grid-template-columns: 1fr;
+        grid-row-gap: 15px;
+        text-align: center;
+        .mobileNavBtn {
+            display: block;
+            @include buttonStyles;
+            margin: 15px;
+            button:hover {
+                @include buttonHoverStyles;
+            }
+        }        
+        nav {
+            display: none;
+            ul {
+                grid-template-columns: 1fr;
+                gap: 10px;   
+                li {
+                    display: block;
+                    padding: 5px;              
+                }         
+            }
+        }        
+    }
     #homePage {
         grid-template-areas: 
             'featuredImg'
